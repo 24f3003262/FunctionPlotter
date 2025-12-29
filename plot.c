@@ -17,7 +17,7 @@
 
 #define THICKNESS 2
 
-#define GridColor 0x303030
+#define GridColor 0xFFFFFF
 
 void draw_at_grid_coordinate(SDL_Surface *psurface,double x, double y,Uint32 color)
 {
@@ -63,7 +63,7 @@ void draw_expression(SDL_Surface *psurface, char *expr)
     {
         for(x=X_START;x<X_END;x+=STEP){
             double y = te_eval(pexpr);
-            draw_at_grid_coordinate(psurface,x,y,0xFFFFFF);
+            draw_at_grid_coordinate(psurface,x,y,0xFFF44F);
         }
     }
     else
