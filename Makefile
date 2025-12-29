@@ -4,9 +4,9 @@
 # Variables
 CC=gcc
 CFLAGS = -Wall -Wextra -g 
-LDFLAGS= -lmingw32 -lSDL2main -lSDL2 -mconsole
+LDFLAGS= -lmingw32 -lSDL2main -lSDL2 -mconsole -lm
 TARGET= plot.exe
-SRC= plot.c
+SRC= plot.c tinyexpr.c
 
 # The "all" rule - what happens when you just type 'make'
 all : $(TARGET)

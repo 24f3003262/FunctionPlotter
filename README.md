@@ -14,9 +14,15 @@ Windows exclusive error that occurs because Windows insists it must have standar
 
 - Conclusion : Windows and linux have different rules when handling external libraries sometimes
 
+#### Was getting error that it couldn't find the source of tinyexpr.h
+
+Basically for a multifile project you have to compile the files together
+
 
 ## What I learned
 
 - Differences in how Windows and linux handles C
 - use of MSYS to install external C library
 - use of SDL2 to create GUI
+- How to compile a multifile project
+- tinyexpr for parsing and evaluating expressions
