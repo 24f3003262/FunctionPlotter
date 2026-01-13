@@ -15,14 +15,27 @@
 #define Y_SCALE HEIGHT/(Y_END-Y_START)
 #define STEP 0.01
 
+double x_start=-10;
+double x_end=10;
+double y_start=-5;
+double y_end=5;
+double step=0.01;
+
 #define THICKNESS 2
 
 #define GridColor 0xFFFFFF
 
+double get_x_scale(double start,double end){
+    return ((double)WIDTH)/(x_end-x_start);
+}
+double get_y_scale(double start,double end){
+    return ((double)HEIGHT)/(y_end-y_start);
+}
+
 void draw_at_grid_coordinate(SDL_Surface *psurface,double x, double y,Uint32 color)
 {
-    double x_disp=WIDTH/2+(x*(double)X_SCALE);
-    double y_disp=HEIGHT/2-(y*(double)Y_SCALE);
+    double x_disp=WIDTH/2+x*get_x_scale(x_start,x_end)+(x_end+x_start)/2*get_x_scale(y_end,y_start);
+    double y_disp=HEIGHT/2-y*get_y_scale(y_start,y_end)+(y_end+y_start)/2*get_y_scale(y_end,y_start);
 
     SDL_Rect shifted_rect=(SDL_Rect){x_disp,y_disp,THICKNESS,THICKNESS};
     SDL_FillRect(psurface,&shifted_rect,color);
@@ -32,7 +45,7 @@ void draw_at_grid_coordinate(SDL_Surface *psurface,double x, double y,Uint32 col
 void draw_grid(SDL_Surface *psurface)
 {
     
-    for(double x=X_START;x<=X_END;x+=STEP/100){
+    for(double x=x_start;x<=x_end;x+=step){
         draw_at_grid_coordinate(psurface,x,0,GridColor);
     }
     // x_axis.x=X_START;
@@ -40,7 +53,7 @@ void draw_grid(SDL_Surface *psurface)
     // x_axis.w=X_END;
     // x_axis.h=2;
     
-    for(double y=Y_START;y<=Y_END;y+=STEP/100){
+    for(double y=y_start;y<=y_end;y+=step){
         draw_at_grid_coordinate(psurface,0,y,GridColor);
     }
     
@@ -61,7 +74,7 @@ void draw_expression(SDL_Surface *psurface, char *expr)
 
     if(pexpr)
     {
-        for(x=X_START;x<X_END;x+=STEP){
+        for(x=x_start;x<x_end;x+=step){
             double y = te_eval(pexpr);
             draw_at_grid_coordinate(psurface,x,y,0xFFF44F);
         }
@@ -78,13 +91,20 @@ int main(int argc, char* argv[]){
     (void)argc;
     (void)argv;
 
-    if (argc!=2){ //input length should be 2 - the program name and the expression. If not return false, 0.
-        printf("Usage %s <expression>\n",argv[0]);//program name
+    if (argc!=7){ //input length should be 2 - the program name and the expression. If not return false, 0.
+        printf("Usage %s <x_start> <x_end> <y_start> <y_end> <step_size> <expression>\n",argv[0]);//program name
         return 0;
 
     }
 
-    char *expr=argv[1];
+    x_start=atof(argv[1]);
+    x_end=atof(argv[2]);
+    
+    y_start=atof(argv[3]);
+    y_end=atof(argv[4]);
+    step=atof(argv[5]);
+    char *expr=argv[6];
+
 
     printf("Hello Plotter, here we begin\n");
     

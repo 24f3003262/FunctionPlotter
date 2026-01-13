@@ -26,3 +26,4 @@ Basically for a multifile project you have to compile the files together
 - use of SDL2 to create GUI
 - How to compile a multifile project
 - tinyexpr for parsing and evaluating expressions
+- creating a MakeFile for C 
