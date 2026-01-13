@@ -87,24 +87,34 @@ void draw_expression(SDL_Surface *psurface, char *expr)
 }
 
 int main(int argc, char* argv[]){
-    // These lines stop the "unused parameter" warnings
-    (void)argc;
-    (void)argv;
+    char input_expr[256];
+    char *expre;
 
-    if (argc!=7){ //input length should be 2 - the program name and the expression. If not return false, 0.
-        printf("Usage %s <x_start> <x_end> <y_start> <y_end> <step_size> <expression>\n",argv[0]);//program name
-        return 0;
-
+    if (argc == 7) {
+        // Command line mode (for power users)
+        x_start = atof(argv[1]);
+        x_end = atof(argv[2]);
+        y_start = atof(argv[3]);
+        y_end = atof(argv[4]);
+        step = atof(argv[5]);
+        expre = argv[6];
+    } else {
+        // Interactive mode (for double-clicking)
+        printf("--- Function Plotter ---\n");
+        printf("Enter x_start x_end (e.g., -10 10): ");
+        scanf("%lf %lf", &x_start, &x_end);
+        printf("Enter y_start y_end (e.g., -5 5): ");
+        scanf("%lf %lf", &y_start, &y_end);
+        printf("Enter step size (e.g., 0.01): ");
+        scanf("%lf", &step);
+        printf("Enter expression (e.g., sin(x)*x): ");
+        scanf("%s", input_expr);
+        expre = input_expr;
     }
-
-    x_start=atof(argv[1]);
-    x_end=atof(argv[2]);
-    
-    y_start=atof(argv[3]);
-    y_end=atof(argv[4]);
-    step=atof(argv[5]);
-    char *expr=argv[6];
-
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+    return 1;
+    }
 
     printf("Hello Plotter, here we begin\n");
     
@@ -124,7 +134,7 @@ int main(int argc, char* argv[]){
     draw_grid(psurface);
     // draw_at_grid_coordinate(psurface,&rect,color);
     //Drawing the expression
-    draw_expression(psurface,expr);
+    draw_expression(psurface,expre);
 
     //Creating an event
     SDL_Event event;
@@ -139,5 +149,6 @@ int main(int argc, char* argv[]){
             }
             
     }
+    SDL_Quit();
     return 0;
 }

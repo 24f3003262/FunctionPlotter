@@ -1,20 +1,21 @@
-
 .PHONY: all clean
 
-# Variables
-CC=gcc
-CFLAGS = -Wall -Wextra -g 
-LDFLAGS= -lmingw32 -lSDL2main -lSDL2 -mconsole -lm
-TARGET= plot.exe
-SRC= plot.c tinyexpr.c
+CC = gcc
+CFLAGS = -Wall -Wextra -O3 
 
-# The "all" rule - what happens when you just type 'make'
-all : $(TARGET)
+# We use -mconsole here so the terminal stays visible for input
+LDFLAGS = -static -lmingw32 -lSDL2main -lSDL2 \
+          -mconsole -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 \
+          -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lsetupapi \
+          -lversion -luuid -lhid -static-libgcc
+
+TARGET = plot.exe
+SRC = plot.c tinyexpr.c
+
+all: $(TARGET)
 
 $(TARGET): $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LDFLAGS)
-	
 
-# a "CLEAN" RULE TO DELETE THE exe and start fresh
 clean:
 	del /f $(TARGET)
