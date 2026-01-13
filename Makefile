@@ -1,5 +1,6 @@
 .PHONY: all clean
 
+# Variables
 CC = gcc
 CFLAGS = -Wall -Wextra -O3 
 
@@ -12,6 +13,7 @@ LDFLAGS = -static -lmingw32 -lSDL2main -lSDL2 \
 TARGET = plot.exe
 SRC = plot.c tinyexpr.c
 
+#  The "all" rule - what happens when you just type 'make'
 all: $(TARGET)
 
 $(TARGET): $(SRC)

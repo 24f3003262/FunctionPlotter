@@ -27,3 +27,4 @@ Basically for a multifile project you have to compile the files together
 - How to compile a multifile project
 - tinyexpr for parsing and evaluating expressions
 - creating a MakeFile for C 
+- Static Linking so that a user can directly use the .exe file without needing dependencies

@@ -91,7 +91,7 @@ int main(int argc, char* argv[]){
     char *expre;
 
     if (argc == 7) {
-        // Command line mode (for power users)
+        // Command line mode 
         x_start = atof(argv[1]);
         x_end = atof(argv[2]);
         y_start = atof(argv[3]);
@@ -99,7 +99,7 @@ int main(int argc, char* argv[]){
         step = atof(argv[5]);
         expre = argv[6];
     } else {
-        // Interactive mode (for double-clicking)
+        // Interactive mode 
         printf("--- Function Plotter ---\n");
         printf("Enter x_start x_end (e.g., -10 10): ");
         scanf("%lf %lf", &x_start, &x_end);
