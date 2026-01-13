@@ -1,6 +1,18 @@
 # FunctionPlotter
 Coding a function plotter to evaluate and display ANY math function in pure C. Involves graphical user interface (GUI) programming, math expression parsing, and 2D geometric transformations to scale and transform the function into a user-specified grid.
 
+# How to Use
+1. Download: Grab the latest plot.exe from the [Releases] section.
+
+2. Run: Double-click the .exe.
+
+3. Input: - Enter your X and Y axis boundaries (e.g., -10 to 10).
+
+4. Enter the step size (lower values like 0.01 mean higher precision).
+
+5. Type your math expression (e.g., sin(x)*x + 2).
+
+6. Interact: The SDL2 window will launch and display your plot!
 
 
 
