@@ -5,19 +5,27 @@ CC = gcc
 CFLAGS = -Wall -Wextra -O3 
 
 # We use -mconsole here so the terminal stays visible for input
-LDFLAGS = -static -lmingw32 -lSDL2main -lSDL2 \
-          -mconsole -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 \
-          -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lsetupapi \
-          -lversion -luuid -lhid -static-libgcc
+LIBS = -lmingw32 -lSDL2main -lSDL2 -mconsole -lm -ldinput8 -ldxguid \
+       -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 \
+       -lshell32 -lsetupapi -lversion -luuid -lhid
+
+LDFLAGS = -static -static-libgcc
 
 TARGET = plot.exe
 SRC = plot.c tinyexpr.c
+OBJS = $(SRC:.c=.o)
 
-#  The "all" rule - what happens when you just type 'make'
+# The "all" rule
 all: $(TARGET)
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(LDFLAGS)
+# Linking: combines .o files to final .exe
+$(TARGET): $(OBJS)
+	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS) $(LIBS)
 
+# Compilation Step: Each .c becomes a .o
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Cleanup rule
 clean:
-	del /f $(TARGET)
+	del /f $(OBJS) $(TARGET)
