@@ -2,7 +2,7 @@
 Coding a function plotter to evaluate and display ANY math function in pure C. Involves graphical user interface (GUI) programming, math expression parsing, and 2D geometric transformations to scale and transform the function into a user-specified grid.
 
 # How to Use
-1. Download: Grab the latest plot.exe from the [Releases] section.
+1. Download: Grab the latest plot.exe from the [Releases] section or dpwnload plot.exe from the code section itself.
 
 2. Run: Double-click the .exe.
 
