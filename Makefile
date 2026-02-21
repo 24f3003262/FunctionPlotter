@@ -13,10 +13,13 @@ LDFLAGS = -static -static-libgcc
 
 TARGET = plot.exe
 SRC = plot.c tinyexpr.c
-OBJS = $(SRC:.c=.o)
+OBJS = $(SRC:.c=.o) # plot.o tinyexpr.o
 
 # The "all" rule
 all: $(TARGET)
+
+# target : dependencies
+#code
 
 # Linking: combines .o files to final .exe
 $(TARGET): $(OBJS)
